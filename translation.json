@@ -1,0 +1,27 @@
+{
+    "en": {
+      "wind":"Wind",
+      "wind-gusts":"Wind Gusts",
+      "air-quality": "Air Quality",
+      "quality-options": {
+        "excellent": "Excellent"
+      }
+    },
+    "sp": {
+      "wind":"Viento",
+      "wind-gusts":"Ráfagas de viento",
+      "air-quality": "Calidad del aire",
+      "quality-options": {
+        "excellent": "Excelente"
+      }
+    },
+    "ko": {
+      "wind":"바람",
+      "wind-gusts":"돌풍",
+      "air-quality": "대기질",
+      "quality-options": {
+        "excellent": "완벽함"
+      }
+    }
+  }
+
