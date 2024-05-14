@@ -17,12 +17,14 @@ async function getResponse(url) {
 function buildResponse(httpCode, returnData) {
     return createResponse(
         httpCode, {
-            'Content-Type': ['application/json;charset=utf-8']
+            'Content-Type': ['application/json']
         },
-        JSON.stringify({ 
-            ...returnData
-        })
+        JSON.stringify(returnData)
     );
+}
+
+function objectEmptyOrNull(obj) {
+    return obj == null || Object.keys(obj).length === 0;
 }
 
 export async function responseProvider(request) {
@@ -38,16 +40,15 @@ export async function responseProvider(request) {
         const language = params.get('language')
         const unit = params.get('unit'); 
 
-        const translation = await database.getJson('translation');
-
-        if (translation == null || Object.keys(translation).length === 0) {
+        const translation = await database.getJson({ item: 'translation' });
+        if (objectEmptyOrNull(translation)) {
             return buildResponse(404, { "errorMessage": "Translation data is missing" });
         }
 
-        let currentWeather = await database.getJson(locationKey);
-        if (currentWeather == null || Object.keys(currentWeather).length === 0) {
+        let currentWeather = await database.getJson({ item: locationKey });
+        if (objectEmptyOrNull(currentWeather)) {
             currentWeather = await getResponse(currentWeatherUrl); 
-            database.putJsonNoWait(locationKey, currentWeather);
+            database.putJsonNoWait({ item: locationKey, value: currentWeather });
         }
 
         // language augmentation
@@ -62,6 +63,6 @@ export async function responseProvider(request) {
         }
         return buildResponse(200, currentWeather);
     } catch(exception) {
-        return buildResponse(500, { "errorMessage": exception.message });
+        return buildResponse(500, { "exception": exception.toString() });
     }
 }

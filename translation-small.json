@@ -1,0 +1,11 @@
+{
+    "en": {
+      "wind":"Wind",
+      "wind-gusts":"Wind Gusts",
+      "air-quality": "Air Quality",
+      "quality-options": {
+        "excellent": "Excellent"
+      }
+    }
+  }
+

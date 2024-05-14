@@ -98,13 +98,13 @@ export class EdgeKV {
 
 	validate({ namespace = null, group = null, item = null }) {
 		if (!namespace || !/^[A-Za-z0-9_-]{1,32}$/.test(namespace)) {
-			throw "Namespace is not valid. Must be 32 characters or less, consisting of A-Z a-z 0-9 _ or -";
+			throw "Namespace(" + namespace + ") is not valid. Must be 32 characters or less, consisting of A-Z a-z 0-9 _ or -";
 		}
 		if (!group || !/^[A-Za-z0-9_-]{1,128}$/.test(group)) {
-			throw "Group is not valid. Must be 128 characters or less, consisting of A-Z a-z 0-9 _ or -";
+			throw "Group(" + group + ") is not valid. Must be 128 characters or less, consisting of A-Z a-z 0-9 _ or -";
 		}
 		if (!item || !/^[A-Za-z0-9_-]{1,512}$/.test(item)) {
-			throw "Item is not valid. Must be 512 characters or less, consisting of A-Z a-z 0-9 _ or -";
+			throw "Item(" + item + ") is not valid. Must be 512 characters or less, consisting of A-Z a-z 0-9 _ or -";
 		}
 	}
 
